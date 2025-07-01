@@ -1,39 +1,18 @@
-// app/page.jsx
-'use client';
+import Link from 'next/link';
 
-import { Canvas, useFrame } from '@react-three/fiber';
-import { OrbitControls } from '@react-three/drei';
-import { useRef } from 'react';
-
-function SpinningBox(props) {
-  const ref = useRef();
-  // Rotate the box every frame
-  useFrame((_, delta) => {
-    ref.current.rotation.x += delta * 0.6;
-    ref.current.rotation.y += delta * 0.4;
-  });
+export default function Home() {
   return (
-    <mesh ref={ref} {...props}>
-      <boxGeometry args={[1, 1, 1]} />
-      <meshStandardMaterial color="#c67e2d" />
-    </mesh>
-  );
-}
-
-export default function Page() {
-  return (
-    <div style={{ height: '100vh', width: '100vw' }}>
-      <Canvas camera={{ position: [2, 2, 5], fov: 60 }}>
-        {/* Lights */}
-        <ambientLight intensity={0.3} />
-        <directionalLight position={[5, 5, 5]} intensity={0.8} />
-
-        {/* Our rotating cube */}
-        <SpinningBox position={[0, 0, 0]} />
-
-        {/* Mouse/touch controls */}
-        <OrbitControls enablePan={false} />
-      </Canvas>
+    <div className="flex flex-col bg-yellow-100 min-h-screen">
+      <header className="bg-black text-white px-6 py-4 flex justify-end items-center">
+        <div className="space-x-10 text-sm tracking-widest">
+          <Link href="/" className="text-pink-200 transition-colors hover:font-bold">AI Skin Analysis</Link>
+          <Link href="/skin-analysis" className="text-pink-200 hover:font-bold">Try</Link>
+          <Link href="/daily-upload" className="text-pink-200 hover:font-bold">Skin History</Link>
+          <Link href="/skin-care-routine" className="text-pink-200 hover:font-bold">Skin Care Routine</Link>
+          <Link href="/contact" className="text-pink-200 hover:font-bold">Contact Us</Link>
+          <Link href="/login" className="text-pink-200 hover:font-bold">Login</Link>
+        </div>
+      </header>
     </div>
   );
 }
